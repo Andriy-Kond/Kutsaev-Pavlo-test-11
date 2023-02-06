@@ -1,5 +1,5 @@
-import ImgApi from './axio';
-import LoadMoreBtn from './components/LoadMoreBtn';
+import ImgApi from './axio.js';
+import LoadMoreBtn from './components/LoadMoreBtn.js';
 import Notiflix from 'notiflix';
 import axios from 'axios';
 
