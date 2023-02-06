@@ -1,4 +1,4 @@
-import ImgApi from './axiosing.js';
+import { ImgApi } from './axiosing.js';
 import LoadMoreBtn from './components/LoadMoreBtn.js';
 import Notiflix from 'notiflix';
 // import axios from 'axios';
@@ -68,6 +68,7 @@ function onLoadMore() {
   return imgApi
     .AxioSearch()
     .then(({ hits }) => {
+      console.log('.then >>> hits', hits);
       // const { totalHits } =  imgApi.AxioSearch();
       // imgApi.countImg += hits.length;
       // console.log(imgApi.countImg);
@@ -77,8 +78,12 @@ function onLoadMore() {
       //   loadMore.disable();
       //   Notiflix.Notify.failure("We're sorry, but you've reached the end of search results.")
       // }
+      const markup = hits.reduce(
+        (markup, hits) => createMarkup(hits) + markup,
+        ''
+      );
 
-      return hits.reduce((markup, hits) => createMarkup(hits) + markup, '');
+      return markup;
     })
     .then(markup => {
       updateGalleryCards(markup);

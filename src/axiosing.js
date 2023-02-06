@@ -4,7 +4,7 @@ const MY_API_KEY = '33373070-0a3de92214998aff69d545527';
 const ENDPOINT = 'https://pixabay.com/api/?key=';
 const axios = require('axios');
 
-export default class ImgApi {
+class ImgApi {
   constructor() {
     this.queryPage = 1;
     this.searchQuery = '';
@@ -35,14 +35,18 @@ export default class ImgApi {
         `${ENDPOINT}${MY_API_KEY}&q=${this.searchQuery}&image_type=photo&orientation=horizontal&safesearch=true&per_page=40&page=${this.queryPage}`
       )
       .then(response => {
+        console.log('ImgApi >>> AxioSearch >>> response', response);
+        console.log('response.data.totalHits ', response.data.totalHits);
         if (response.data.totalHits === 0) {
           throw new Error(response.statusText);
         }
 
-        console.log(response.data.totalHits);
+        // console.log(response.data.totalHits);
+        console.log('response.data', response.data);
         return response.data;
       })
       .then(data => {
+        console.log('ImgApi >>> AxioSearch >>> data', data);
         this.incrementPage();
 
         return data;
@@ -61,3 +65,5 @@ export default class ImgApi {
   //     this.countImg = 0;
   //   }
 }
+
+export { ImgApi };
