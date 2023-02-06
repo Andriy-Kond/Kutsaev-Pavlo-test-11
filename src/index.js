@@ -1,7 +1,7 @@
-import ImgApi from './Axio.js';
+import ImgApi from './axiosing.js';
 import LoadMoreBtn from './components/LoadMoreBtn.js';
 import Notiflix from 'notiflix';
-import axios from 'axios';
+// import axios from 'axios';
 
 const galletyList = document.querySelector('.gallery');
 const form = document.getElementById('search-form');
